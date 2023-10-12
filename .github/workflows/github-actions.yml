@@ -13,11 +13,11 @@ jobs:
         steps:
           - name: Print a message
             run: |
-              echo "We are before actions/chechoutV2
+              echo "We are before actions/chechoutV2"
           - uses: actions/checkout@v2
           - name: Print a message
             run: |
-              echo "We are after actions/chechoutV2
+              echo "We are after actions/chechoutV2"
           - name: Check SSH Agent Status
             run: |
               echo "Checking SSH agent status"
