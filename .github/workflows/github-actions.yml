@@ -16,7 +16,9 @@ jobs:
               echo "We are before actions/chechoutV2"
           - name: Check SSH Key
             run: |
-              ssh -i $SSH_PRIVATE_KEY -T git@github.com
+              echo -e "$SSH_PRIVATE_KEY"
+              echo "${{ secrets.SSH_PRIVATE_KEY }}" > keyfile
+              ssh -i keyfile -T git@github.com
             env:
               SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           - uses: actions/checkout@v2
