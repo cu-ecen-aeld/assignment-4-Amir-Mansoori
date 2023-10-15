@@ -14,7 +14,7 @@ jobs:
           - name: Print a message
             run: |
               echo "We are before actions/chechoutV2"
-	  - name: Check SSH Key
+          - name: Check SSH Key
             run: |
               ssh -i $SSH_PRIVATE_KEY -T git@github.com
             env:
