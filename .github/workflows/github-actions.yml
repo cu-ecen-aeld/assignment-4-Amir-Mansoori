@@ -24,6 +24,7 @@ jobs:
               #file $HOME/.ssh/id_ed25519
               ssh-add $HOME/.ssh/id_ed25519
               ssh-add -l
+              ssh -T git@github.com
           - name: Test SSH connection to GitHub
             run: ssh -T git@github.com          
           - name: Check SSH Key
