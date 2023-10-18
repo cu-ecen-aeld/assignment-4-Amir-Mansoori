@@ -25,8 +25,8 @@ jobs:
           #    ssh-add $HOME/.ssh/id_ecdsa
           #    ssh-add -l
           #    ssh -vT git@github.com
-          #- name: Test SSH connection to GitHub
-          #  run: ssh -T git@github.com          
+          - name: Test SSH connection to GitHub
+            run: ssh -T git@github.com          
           #- name: Check SSH Key
           #  run: |
           #    echo -e "$SSH_PRIVATE_KEY"
