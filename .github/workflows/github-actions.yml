@@ -10,22 +10,16 @@ jobs:
         container: cuaesd/aesd-autotest:assignment4-buildroot
         runs-on: self-hosted
         timeout-minutes: 120
-        steps:
-          #- name: Print a message
-          #  run: |
-          #    echo "We are before actions/chechoutV2"
-          #- name: Check SSH Key
-          #  run: |
-          #    echo -e "$SSH_PRIVATE_KEY"
-          #    echo "${{ secrets.SSH_PRIVATE_KEY }}" > keyfile
-          #    chmod 600 keyfile
-          #    ssh -i keyfile -T git@github.com
-          #  env:
-          #    SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          - uses: actions/checkout@v2
-          - name: Print a message
+        steps:          
+          - name: Check SSH Key
             run: |
-              echo "We are after actions/chechoutV2"
+              echo -e "$SSH_PRIVATE_KEY"
+              echo "${{ secrets.SSH_PRIVATE_KEY }}" > keyfile
+              chmod 600 keyfile
+              ssh -i keyfile -T git@github.com
+            env:
+              SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          - uses: actions/checkout@v2
           - name: Check SSH Agent Status
             run: |
               echo "Checking SSH agent status"
