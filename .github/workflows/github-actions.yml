@@ -16,7 +16,18 @@ jobs:
               mkdir -p $HOME/.ssh
               ssh-keyscan -t rsa github.com >> $HOME/.ssh/known_hosts
               ssh-keyscan -t ed25519 github.com >> $HOME/.ssh/known_hosts
-              ssh-keyscan -t ecdsa-sha2-nistp256 github.com >> $HOME/.ssh/known_hosts          
+              ssh-keyscan -t ecdsa-sha2-nistp256 github.com >> $HOME/.ssh/known_hosts
+          - name: Set up SSH key
+            run: |
+              mkdir -p $HOME/.ssh
+              echo "$SSH_PRIVATE_KEY" > $HOME/.ssh/id_ed25519  # Use the appropriate key type
+              chmod 600 $HOME/.ssh/id_ed25519
+              eval "$(ssh-agent -s)"
+              ssh-add $HOME/.ssh/id_ed25519
+          - name: Add GitHub's host key to known_hosts
+            run: ssh-keyscan -t ed25519 github.com >> $HOME/.ssh/known_hosts
+          - name: Test SSH connection to GitHub
+            run: ssh -T git@github.com          
           - name: Check SSH Key
             run: |
               echo -e "$SSH_PRIVATE_KEY"
