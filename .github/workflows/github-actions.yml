@@ -14,25 +14,16 @@ jobs:
           - name: Add GitHub's host keys to known_hosts
             run: |
               mkdir -p $HOME/.ssh
-              ssh-keyscan -t rsa github.com >> $HOME/.ssh/known_hosts
               ssh-keyscan -t ed25519 github.com >> $HOME/.ssh/known_hosts
-              ssh-keyscan -t ecdsa-sha2-nistp256 github.com >> $HOME/.ssh/known_hosts
           - name: Set up SSH key
             run: |
               mkdir -p $HOME/.ssh
-              echo "${{ secrets.SSH_PRIVATE_KEY }}" > $HOME/.ssh/id_ed25519  # Use the appropriate key type
-              chmod 600 $HOME/.ssh/id_ed25519
+              echo "${{ secrets.SSH_PRIVATE_KEY }}" > $HOME/.ssh/id_ed25519
+              #chmod 600 $HOME/.ssh/id_ed25519
               eval "$(ssh-agent -s)"
-              file $HOME/.ssh/id_ed25519
+              #file $HOME/.ssh/id_ed25519
               ssh-add $HOME/.ssh/id_ed25519
-          - name: Check SSH Agent Status
-            run: |
-              echo "Checking SSH agent status"
-              ssh-agent -k
-              eval $(ssh-agent -s)
               ssh-add -l
-          #- name: test ssh agent
-          #  run: ssh-add -l
           - name: Test SSH connection to GitHub
             run: ssh -T git@github.com          
           - name: Check SSH Key
