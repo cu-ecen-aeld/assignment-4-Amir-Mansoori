@@ -10,7 +10,12 @@ jobs:
         container: cuaesd/aesd-autotest:assignment4-buildroot
         runs-on: self-hosted
         timeout-minutes: 120
-        steps:          
+        steps:
+        - name: Add GitHub's host keys to known_hosts
+          run: |
+            ssh-keyscan -t rsa github.com >> $HOME/.ssh/known_hosts
+            ssh-keyscan -t ed25519 github.com >> $HOME/.ssh/known_hosts
+            ssh-keyscan -t ecdsa-sha2-nistp256 github.com >> $HOME/.ssh/known_hosts          
           - name: Check SSH Key
             run: |
               echo -e "$SSH_PRIVATE_KEY"
