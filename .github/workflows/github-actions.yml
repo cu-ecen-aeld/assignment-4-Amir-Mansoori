@@ -13,6 +13,7 @@ jobs:
         steps:
           - name: Add GitHub's host keys to known_hosts
             run: |
+              mkdir -p $HOME/.ssh
               ssh-keyscan -t rsa github.com >> $HOME/.ssh/known_hosts
               ssh-keyscan -t ed25519 github.com >> $HOME/.ssh/known_hosts
               ssh-keyscan -t ecdsa-sha2-nistp256 github.com >> $HOME/.ssh/known_hosts          
