@@ -25,8 +25,8 @@ jobs:
               eval "$(ssh-agent -s)"
               file $HOME/.ssh/id_ed25519
               ssh-add $HOME/.ssh/id_ed25519
-          - name: Add GitHub's host key to known_hosts
-            run: ssh-keyscan -t ed25519 github.com >> $HOME/.ssh/known_hosts
+          - name: test ssh agent
+            run: ssh-add -l
           - name: Test SSH connection to GitHub
             run: ssh -T git@github.com          
           - name: Check SSH Key
