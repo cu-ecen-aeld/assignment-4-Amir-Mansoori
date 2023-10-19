@@ -11,6 +11,8 @@ jobs:
         runs-on: self-hosted
         timeout-minutes: 120
         steps:
+        - name: webfactory/ssh-agent
+          uses: webfactory/ssh-agent@v0.8.0            
           #- name: Add GitHub's host keys to known_hosts
           #  run: |
           #    mkdir -p $HOME/.ssh
