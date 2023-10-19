@@ -38,12 +38,12 @@ jobs:
           #  env:
           #    SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           - uses: actions/checkout@v3
-          - name: Check SSH Agent Status
-            run: |
-              echo "Checking SSH agent status"
-              ssh-agent -k
-              eval $(ssh-agent -s)
-              ssh-add -l
+          #- name: Check SSH Agent Status
+          #  run: |
+          #    echo "Checking SSH agent status"
+          #    ssh-agent -k
+          #    eval $(ssh-agent -s)
+          #    ssh-add -l
           - name: Checkout submodules
             run: git submodule update --init --recursive
           - uses: webfactory/ssh-agent@v0.5.3
