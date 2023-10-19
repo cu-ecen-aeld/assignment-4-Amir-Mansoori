@@ -11,19 +11,19 @@ jobs:
         runs-on: self-hosted
         timeout-minutes: 120
         steps:
-          - name: Print a message
-            run: |
-              echo "We are before actions/chechoutV2"
+#          - name: Print a message
+#            run: |
+#              echo "We are before actions/chechoutV2"
           - uses: actions/checkout@v2
-          - name: Print a message
-            run: |
-              echo "We are after actions/chechoutV2"
-          - name: Check SSH Agent Status
-            run: |
-              echo "Checking SSH agent status"
-              ssh-agent -k
-              eval $(ssh-agent -s)
-              ssh-add -l
+#          - name: Print a message
+#            run: |
+#              echo "We are after actions/chechoutV2"
+#          - name: Check SSH Agent Status
+#            run: |
+#              echo "Checking SSH agent status"
+#              ssh-agent -k
+#              eval $(ssh-agent -s)
+#              ssh-add -l
           - name: Checkout submodules
             run: git submodule update --init --recursive
           - uses: webfactory/ssh-agent@v0.5.3
